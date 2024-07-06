@@ -19,6 +19,7 @@ setuptools.setup(
 	entry_points = {
 		"console_scripts": [
 			"bibligator = bibligator:main",
+			"bibliga = bibligator:main",
 		],
 	},
 	install_requires = ["pikepdf >= 6"],
