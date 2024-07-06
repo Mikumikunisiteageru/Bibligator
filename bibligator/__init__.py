@@ -53,6 +53,7 @@ def main():
 	parser = argparse.ArgumentParser(description=DESCRIPTION)
 	parser.add_argument("filename", metavar="FILENAME", type=str,
         help = "Name of a PDF file in the sequence")
+	parser.add_argument("--allowbreak", type=bool, default=False)
 	args = parser.parse_args()
 	sfilename = args.filename
 	if not os.path.isfile(sfilename):
@@ -67,8 +68,9 @@ def main():
 		raise FileExistsError("Destiny file already exists!")
 	sfilenames = sorted(list(filter(isprefixed(stem), glob(f"{stem} *.pdf"))),
 		key = lambda s: int(m.match(s).group(3)))
-	if not iscoherent(list(map(exnums, sfilenames))):
-		raise ValueError("Intervals not coherent!")
+	if not args.allowbreak:
+		if not iscoherent(list(map(exnums, sfilenames))):
+			raise ValueError("Intervals not coherent!")
 	merge(sfilenames, dfilename)
 	zip(sfilenames, zfilename)
 	remove(sfilenames)
