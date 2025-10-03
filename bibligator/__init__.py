@@ -21,9 +21,15 @@ def exnums(name):
 	return n0, n1
 
 def iscoherent(intervals):
+	if intervals[0][0] == intervals[0][1] == 0:
+		return iscoherent(intervals[1:])
 	tt = [itv[1] + 1 for itv in intervals[:-1]]
 	ss = [itv[0] for itv in intervals[1:]]
-	return tt == ss
+	if tt == ss:
+		return True
+	else:
+		print("Missing interval(s):", ", ".join([str((t, s-1)) for (t, s) in zip(tt, ss) if t != s]))
+		return False
 
 def isprefixedw(stem, filename):
 	r = m.match(filename)

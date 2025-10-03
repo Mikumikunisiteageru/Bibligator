@@ -8,7 +8,7 @@ with codecs.open("README.md", "r", "utf-8") as fin:
 
 setuptools.setup(
 	name = "bibligator",
-	version = "0.1.0",
+	version = "0.1.1",
 	author = "Yu-Chang YANG",
 	author_email = "yang.yc.allium@gmail.com",
 	description = "A tool to merge sequential PDFs",
